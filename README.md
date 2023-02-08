@@ -1,101 +1,68 @@
-# FastAPI-React-MongoDB
-A minimal boilerplate / template project to get you started with a Python FastAPI backend, React frontend, MongoDB, and JWT user authentication (via FastAPIUsers).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This template project provides the following:
-- React frontend with the commonly used styling framework React-Bootstrap and icons library React-Icons
-- Authentication system for FastAPI using JWT tokens as offered by FastAPIUsers project
-- Examples for creating protected routes and regular routes using FastAPIUsers at backend and React-Router at frontend
-- Examples for creating MongoDB collection schemas (using Pydantic) and adding more attributes to "users" collection
-<hr>
+## Available Scripts
 
-## Acknowledgement
-- This idea is inspired by [tiangolo's](https://github.com/tiangolo) official FastAPI full stack project [full-stack-fastapi-postgresql](https://github.com/tiangolo/full-stack-fastapi-postgresql). Please head to the said repo for a Vue frontend and PostgreSQL database template project. It provides a comprehensive base project in the form of a cookiecutter template.
-- The React authorization component is inspired by [Buuntu's](https://github.com/Buuntu) project [fastapi-react](https://github.com/Buuntu/fastapi-react). Please head to the said repo for a React frontend and PostgreSQL database template project. It provides a comprehensive base project in the form of a cookiecutter template that handles authentication, reverse proxies, docker containers, testing, server-side validation, linting, etc.
-- The backend authentication is built using [franke567's](https://github.com/frankie567) [fastapi-users](https://github.com/frankie567/fastapi-users) python package for FastAPI. It provides easy out-of-the-box backend auth components.
+In the project directory, you can run:
 
-<hr>
+### `npm start`
 
-## Features
-- **[FastAPI](https://github.com/tiangolo/fastapi)** (backend server)
-- **[FastAPIUsers](https://github.com/frankie567/fastapi-users)** (authentication system)
-- **[React](https://reactjs.org/)** (frontend library)
-- **[React-Bootstrap](https://github.com/react-bootstrap/react-bootstrap)** (frontend styling library)
-- **[React-Icons](https://github.com/react-icons/react-icons)** (frontend styling library)
-- **[MongoDB](https://github.com/mongodb/mongo)** (database server)
-- **[Motor](https://github.com/mongodb/motor)** (async MongoDB connector for Python)
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-<hr>
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-## Screenshots
-#### Landing Page
-![Landing Page](https://user-images.githubusercontent.com/10784445/93062550-b301d800-f63a-11ea-99f6-d60911927245.png)
+### `npm test`
 
-#### Home Page
-![Home Page](https://user-images.githubusercontent.com/10784445/93062563-ba28e600-f63a-11ea-9119-5b711efa7cd8.png)
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### Swagger UI API Documentation
-![Swagger UI API Documentation](https://user-images.githubusercontent.com/10784445/93062570-bd23d680-f63a-11ea-8d6a-2a2d121817a4.png)
+### `npm run build`
 
-<hr>
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Setup Instructions
-#### A. MongoDB Database
-1. Install [MongoDB-4.4.0](https://docs.mongodb.com/manual/installation/)
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-#### B. Python/FastAPI Backend
-1. Install [Anaconda](https://docs.anaconda.com/anaconda/install/)
-2. Create an anaconda virtual environment (called "ProjectENV" or whatever you like) using the requirements.txt
-```bash
-conda create -n ProjectENV python=3.8
-```
-3. Activate the virtual environemnt
-```bash
-conda activate ProjectENV
-```
-4. Navigate to the root directory (where the three directories backend, database and frontend are present)
-5. Install Python packages to the virtual environment
-```bash
-pip install -r backend/requirements.txt 
-```      
-6. Deactivate the virtual environment
-```bash
-conda deactivate
-```
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-#### C. React Frontend
-1. Install [Node Package Manager (npm)](https://www.npmjs.com/get-npm)
-2. Navigate into /frontend directory (where package.json is present)
-3. Install the React dependencies with npm
-```bash
-npm install
-```
+### `npm run eject`
 
-<hr>
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Run Instructions
-#### A. MongoDB Database
-1. Navigate to the root directory (where the three directories backend, database and frontend are present) or start your existing MongoDB server
-2. Start MongoDB server
-```bash
-mongod --dbpath=database
- ```
-3. The MongoDB server will be hosted at its default port 27017
-#### B. Python/FastAPI Backend
-1. Navigate into /backend directory (where main.py is present)
-2. Activate the virtual environemnt
-```bash
-conda activate ProjectENV
-```
-3. Start FastAPI server
-```bash
-uvicorn main:app --reload
-``` 
-4. The FastAPI server will be hosted at its default port 8000
-5. To access SwaggerUI for API testing and documentation, goto [http://localhost:8000/docs](http://localhost:8000/docs)
-#### C. React Frontend
-1. Navigate to /frontend directory (where package.json is present)
-2. Start React Web Application
-```bash
-npm start
-```
-3. The React web application will be hosted at its default port 3000, goto [http://localhost:3000/](http://localhost:3000/)
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
