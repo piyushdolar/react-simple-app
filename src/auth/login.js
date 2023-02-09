@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router'
 import { Form, Button, Alert } from 'react-bootstrap'
 import auth from './auth'
 
 export const Login = () => {
-	// History hook
-	const history = useHistory()
-
 	// User information hook
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState('admin@mail.com')
+	const [password, setPassword] = useState('password')
 	const [error, setError] = useState('')
 
 	// Function to call submit
@@ -19,11 +15,10 @@ export const Login = () => {
 		setError('')
 		try {
 			const data = await auth.login(email, password)
-			console.log(data)
 			// Executes only when there are no 400 and 500 errors, else they are thrown as errors
 			// Callbacks can be added here
 			if (data) {
-				history.push('/')
+				window.location.reload()
 			}
 		} catch (err) {
 			if (err instanceof Error) {
@@ -55,7 +50,7 @@ export const Login = () => {
 				<Alert variant='danger' style={error !== '' ? { display: 'block' } : { display: 'none' }}>
 					{error}
 				</Alert>
-				<Button variant='primary' type='submit' block>
+				<Button variant='primary' type='submit' className='mt-3'>
 					Log In
 				</Button>
 			</Form>

@@ -1,7 +1,6 @@
-import decodeJwt from 'jwt-decode'
-
-class Auth {
-	login = async (email, password) => {
+import API from '../api'
+const Auth = {
+	login: async (email, password) => {
 		// Assert email is not empty
 		if (!(email.length > 0)) {
 			throw new Error('Email was not provided')
@@ -14,35 +13,28 @@ class Auth {
 		const formData = new FormData()
 		formData.append('email', email)
 		formData.append('password', password)
-		// Create request
-		const request = new Request('http://test-api.kk-lotto.com:8080/api/auth/login', {
-			method: 'POST',
-			body: formData
-		})
-		// Fetch request
-		const response = await fetch(request)
+
+		// POST request
+		const response = await API.post('/auth/login', formData)
+
 		// 500 error handling
 		if (response.status === 500) {
 			throw new Error('Internal server error')
 		}
 		// Extracting response data
-		const data = await response.json()
 		// 400 error handling
 		if (response.status >= 400 && response.status < 500) {
-			if (data.detail) {
-				throw data.detail
-			}
-			throw data
+			throw new Error('Unauthorized')
 		}
 		// Successful login handling
-		if ('token' in data) {
-			localStorage.setItem('token', data['token'])
+		if ('token' in response.data) {
+			localStorage.setItem('token', response.data['token'])
 			localStorage.setItem('user', 'user')
 		}
-		return data
-	}
+		return response.data
+	},
 
-	register = async (firstName, lastName, email, password, passwordConfirmation) => {
+	register: async (firstName, lastName, email, password, passwordConfirmation) => {
 		// Assert firstName, lastName and phone not empty
 		if (!(firstName.length > 0)) {
 			throw new Error('First Name was not provided')
@@ -102,29 +94,59 @@ class Auth {
 			localStorage.setItem('permissions', 'user')
 		}
 		return data
-	}
+	},
 
-	logout = callback => {
+	logout: callback => {
 		localStorage.removeItem('token')
 		localStorage.removeItem('user')
 		// Using a callback to load '/' when logout is called
 		callback()
-	}
+	},
 
-	getUser = async () => {
+	getUser: async () => {
 		const token = localStorage.getItem('token')
-		// Create request
-		const request = new Request('http://localhost:8000/auth/users/me', {
-			method: 'GET',
+		// GET request
+		const response = await API.get('/auth/user', {
 			headers: { Authorization: `Bearer ${token}` }
 		})
-		// Fetch request
-		const response = await fetch(request)
-		const data = await response.json()
-		return data
-	}
+		return response.data.user
+	},
 
-	isAuthenticated = () => {
+	getCustomers: async params => {
+		const token = localStorage.getItem('token')
+		// GET request
+		const response = await API.get('/customers/paginate', {
+			headers: { Authorization: `Bearer ${token}` },
+			params: params
+		})
+		return response.data
+	},
+
+	createCustomer: async form => {
+		const token = localStorage.getItem('token')
+		const response = await API.post('/customers', form, {
+			headers: { Authorization: `Bearer ${token}` }
+		})
+		return response
+	},
+
+	deleteCustomer: async id => {
+		const token = localStorage.getItem('token')
+		const response = await API.delete(`/customers/${id}`, {
+			headers: { Authorization: `Bearer ${token}` }
+		})
+		return response
+	},
+
+	updateCustomer: async form => {
+		const token = localStorage.getItem('token')
+		const response = await API.patch(`/customers/${form.id}`, form, {
+			headers: { Authorization: `Bearer ${token}` }
+		})
+		return response
+	},
+
+	isAuthenticated: () => {
 		const user = localStorage.getItem('user')
 		if (!user) {
 			return false
@@ -133,4 +155,4 @@ class Auth {
 	}
 }
 
-export default new Auth()
+export default Auth
